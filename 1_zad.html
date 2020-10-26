@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamen, Skare, Papir</title>
+</head>
+<body>
+    <script type="text/javascript">
+        let igrac = prompt("Upisite Kamen, Skare ili Papir");
+        let odabir = ["Kamen", "Skare","Papir"];
+        let kom = Math.floor(Math.random()*odabir.length);
+        let odabirKompa = odabir[kom];
+        if(!odabir.includes(igrac)){
+            alert("Unesite ispravnu opciju!");
+            igrac = prompt("Upisite Kamen, Skare ili Papir");
+        }
+        function usporedi(tvoj, kompov){
+            let bod = 0;
+            if(tvoj === kompov){
+                bod=0;
+                alert("Izjednaceno");
+            }
+            if(tvoj === "Kamen"){
+                if(kompov === "Skare"){
+                    bod++;
+                    alert("Tvoj bod!");
+                }
+                else{
+                    if(kompov === "Papir"){
+                        bod--
+                        alert("Kompjuterov bod!");
+                    }
+                }
+            }
+            if(tvoj === "Skare"){
+                if(kompov === "Papir"){
+                    bod++;
+                    alert("Tvoj bod!");
+                }
+                else{
+                    if(kompov === "Kamen"){
+                        bod--;
+                        alert("Kompjuterov bod!");
+                    }
+                }
+            }
+            console.log(bod);
+            console.log(tvoj);
+            console.log(kompov);
+        }
+        let igra = usporedi(igrac,odabirKompa);
+        igrac = prompt("Upisite Kamen, Skare ili Papir");
+    </script>
+</body>
+</html>

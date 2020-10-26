@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uneseno Polje</title>
+</head>
+<body>
+    <input type="text" id="brojevi" class="brojevi"><br/><br/>
+    <input type="number" id="zbroj" class="zbroj"><br/><br/>
+    <div id="zapis"></div><br/><br/>
+    <input type="button" id="dodaj" value="Koliko brojeva treba">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    document.getElementById("dodaj").addEventListener("click", function(){
+        let broj = Number(document.getElementById("zbroj").value);
+        $('#brojevi').on("keyup", function() {
+            this.value = this.value.replace(/ /g,"");
+            this.value = this.value.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        });
+    let ispis = brojevi.value;
+    let niz = Array.from(ispis.split(" "));
+    var noviN = Array.from(new Set(niz)).map(function(item) {
+    return parseInt(item, 10);
+    });
+    console.log(niz);  
+    console.log(noviN);
+    function zbroj(niz,duljina,broj){
+           if(broj === 0){
+               return 0
+           }
+           let suma = Number.MAX_VALUE;
+           for( let i=0;i<duljina;i++){
+               if(niz[i]<=broj){
+                   let brojevi = zbroj(niz,duljina,broj-niz[i]);
+                   if((brojevi != Number.MAX_VALUE) && ((brojevi+1) < suma)){
+                       suma=brojevi+1;
+                    }
+               }
+           }
+           return suma
+        }
+       console.log(zbroj(noviN,noviN.length,broj));
+       event.preventDefault();
+    });
+    /*function Count(S, m, n) {
+        let table = new Array(m + 1);
+        for (let i = 1; (i <= n); i++) {
+            table[0, i] = (Number.MAX_VALUE - 1);
+        }
+        for (let i= 1; (i <= m); i++) {
+            for (let j = 1; (j <= n); j++) {
+                if ((S[(i - 1)] > j)) {
+                    table[i, j] = table[(i - 1), j];
+                }
+                else {
+                    table[i, j] = Math.min(table[(i - 1), j], (table[i, (j - S[(i - 1)])] + 1));
+                }
+            }
+        }
+        return table[m, n];
+    }
+    let arr = [1,2,5,8];
+    let m = arr.length;
+    console.log(Count(arr,m,11));*/
+    </script>
+</body>
+</html>

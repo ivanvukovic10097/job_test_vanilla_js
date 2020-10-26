@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrom</title>
+    <style>
+        #tekst:valid{
+            border: 3px solid green;
+        }
+        #tekst:invalid{
+            border: 3px solid red;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="tekst" placeholder="Unesite tekst za provjeru" required novalidate><br/><br/>
+    <input type="submit" value="Provjeri!" id="submit"><br/><br/>
+    <div id="ispis"></div>
+    <script type="text/javascript">
+        document.getElementById("submit").addEventListener("click",function(){
+            let value = document.getElementById("tekst").value;
+            let tekst = String(value).toLowerCase();
+            console.log(tekst);
+            if(tekst == 0){
+                alert("Molimo Unesite tekst!");
+            }
+            else{
+                event.preventDefault();
+                function provjeraPalindroma(s){
+                    let cs = s.replace(/[ ,.;:_-]/g, "");
+                    cs.trim();
+                    let ds = cs.length;
+                    if(cs.length == 0 || cs.length == 1){
+                        return true;
+                    }
+                    if(cs[0] == cs[ds-1]){
+                        return provjeraPalindroma(cs.slice(1,ds-1));
+                    }
+                    return false
+                }
+                if(provjeraPalindroma(tekst)){
+                    document.getElementById("ispis").innerHTML='Palindrom';
+                }
+                else{
+                    document.getElementById("ispis").innerHTML='Nije palindrom';
+                }
+            }
+        });
+        let provjera = document.getElementById("tekst");
+        provjera.addEventListener("input", function(){
+            console.log(provjera.checkValidity());
+            });
+    </script>
+</body>
+</html>

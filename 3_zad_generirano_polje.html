@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generirano Polje</title>
+</head>
+<body>
+    <script type="text/javascript">
+        let nizN = [];
+        for(let i=0;i<10;i++){
+            nizN[i]=Math.floor(Math.random()*19)+1;
+        }
+        // prvotno popunjavanje polja 
+        console.log(nizN);
+        let noviN = nizN.filter(function(e,i){
+            return nizN.indexOf(e)==i;
+        });
+        console.log(noviN);
+        //filtriranje polja N gdje se ne ponavljaju brojevi
+        let brojB;
+        brojB = Math.floor(Math.random() * 20) + 1;
+        console.log(brojB);
+        //odabir broja
+       function zbroj(niz,duljina,broj){
+           if(broj === 0){
+               //postavljanje prvog slucaja
+               return 0
+           }
+           let suma = Number.MAX_VALUE;
+           //postavljanje rezultata
+           for( let i=0;i<duljina;i++){
+               if(niz[i]<=broj){
+                   //pronalaženje svih brojeva manje od zadanog broja
+                   let brojevi = zbroj(niz,duljina,broj-niz[i]);
+                   //postavljanje uvjeta i provjera minimalizacije
+                   if((brojevi != Number.MAX_VALUE) && ((brojevi+1) < suma)){
+                       suma=brojevi+1;
+                    }
+               }
+           }
+           return suma
+        }
+       console.log(zbroj(noviN,noviN.length,brojB));
+    </script>
+</body>
+</html>
